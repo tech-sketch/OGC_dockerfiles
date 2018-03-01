@@ -22,3 +22,20 @@ RUN cd ~/workspace/opencv_contrib/
   && mkdir build && cd build \
   && cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/ .. \
   && make && make install
+
+
+RUN apt-get install -y wget \
+  && echo "deb http://ubuntu.kurento.org/ xenial kms6" | tee /etc/apt/sources.list.d/kurento.list \
+	&& wget -O - http://ubuntu.kurento.org/kurento.gpg.key | apt-key add - \
+  	&& apt-get update \
+  	&& apt-get -y install kurento-media-server-6.0 \
+  	&& apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 8888
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+ENV GST_DEBUG=Kurento*:5
+
+ENTRYPOINT ["/entrypoint.sh"]
