@@ -15,7 +15,7 @@ RUN mkdir ~/workspace/ && cd ~/workspace/ \
   && git clone https://github.com/opencv/opencv_contrib.git
 
 
-RUN cd ~/workspace/opencv_contrib/
+RUN cd ~/workspace/opencv_contrib/ \
   && git checkout refs/tags/3.4.0 \
   && cd ~/workspace/opencv/ \
   && git checkout refs/tags/3.4.0 \
