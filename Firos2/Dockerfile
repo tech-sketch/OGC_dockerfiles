@@ -5,7 +5,7 @@ MAINTAINER Kazuki Urabe <urabe.kazuki@tis.co.jp>
 
 # ROS2 install
 RUN apt update
-RUN apt install curl
+RUN apt install -y curl
 RUN curl http://repo.ros2.org/repos.key | apt-key add -
 RUN sh -c 'echo "deb [arch=amd64,arm64] http://repo.ros2.org/ubuntu/main xenial main" > /etc/apt/sources.list.d/ros2-latest.list'
 
